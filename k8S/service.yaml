@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pfe-app-service
+  namespace: pfe-devsecops
+spec:
+  selector:
+    app: pfe-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: ClusterIP

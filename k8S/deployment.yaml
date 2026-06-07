@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pfe-app
+  namespace: pfe-devsecops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pfe-app
+  template:
+    metadata:
+      labels:
+        app: pfe-app
+    spec:
+      containers:
+        - name: pfe-app
+          image: pfe-devsecops-app:v1
+          ports:
+            - containerPort: 5000
