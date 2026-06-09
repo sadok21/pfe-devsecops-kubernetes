@@ -5,16 +5,43 @@ metadata:
   namespace: pfe-devsecops
 spec:
   replicas: 2
+
   selector:
     matchLabels:
       app: pfe-app
+
   template:
     metadata:
       labels:
         app: pfe-app
+
     spec:
       containers:
-        - name: pfe-app
-          image: pfe-devsecops-app:v1
-          ports:
-            - containerPort: 5000
+      - name: pfe-app
+        image: sadok21/pfe-devsecops-app:latest
+
+        ports:
+        - containerPort: 5000
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 15
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
