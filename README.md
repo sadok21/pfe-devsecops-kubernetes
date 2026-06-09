@@ -36,3 +36,4 @@ Kubernetes K3s Cluster OVH
         |
         v
 Monitoring Prometheus / Grafana
+# trigger pipeline
