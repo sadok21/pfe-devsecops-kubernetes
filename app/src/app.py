@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     return jsonify({
         "project": "PFE DevSecOps Kubernetes",
-        "message": "Application Flask déployée avec succès",
+        "message": "Appplication Flask déployée automatiquement via GitHub Actions",
         "status": "running",
         "version": "1.0.0"
     })
