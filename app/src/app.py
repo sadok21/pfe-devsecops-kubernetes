@@ -1,25 +1,28 @@
 from flask import Flask, jsonify
-from datetime import datetime
+from datetime import datetime, timezone
 
 app = Flask(__name__)
 
-@app.route("/")
+
+@app.get("/")
 def home():
     return jsonify({
         "project": "PFE DevSecOps Kubernetes",
-        "message": "Appplication Flask deployeee",
+        "message": "Application Flask deployee",
         "status": "running",
         "version": "1.0.0"
     })
 
-@app.route("/health")
+
+@app.get("/health")
 def health():
     return jsonify({
         "status": "healthy",
-        "timestamp": datetime.utcnow().isoformat()
+        "timestamp": datetime.now(timezone.utc).isoformat()
     })
 
-@app.route("/info")
+
+@app.get("/info")
 def info():
     return jsonify({
         "author": "Sadok Bouzrati",
@@ -35,6 +38,3 @@ def info():
             "Grafana"
         ]
     })
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
